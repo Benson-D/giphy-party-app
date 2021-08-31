@@ -1,16 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Giphy Party!</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <title>Giphy Party!</title>
-</head>
+  <body>
+    <!-- Build Form, need input and two buttons, and empty div -->
+    <div class="giphy">
+      <form action="#" id="giphy__form">
+        <input
+          id="giphy__input"
+          type="text"
+          placeholder="Enter a Search Term"
+        />
+        <button id="giphy__search" type="submit">Search Giphy!</button>
+        <button id="giphy__remove">Remove Images</button>
+      </form>
+      <div class="giphy-images"></div>
+    </div>
 
-<body>
-
-<script src="https://unpkg.com/jquery"></script>
-<script src="https://unpkg.com/axios/dist/axios.js"></script>
-<script src="app.js"></script>
-</body>
-
+    <script src="https://unpkg.com/jquery"></script>
+    <script src="https://unpkg.com/axios/dist/axios.js"></script>
+    <script src="app.js"></script>
+  </body>
 </html>
