@@ -24,31 +24,39 @@ const API_KEY = "MhAodEJIJxQMxW9XqxKjyXfNYdLoOIym";
  * Return response data from api
  */
 async function giphyApi(searchPrompt) {
-  const res = await axios.get(GIPHY_URL, { params: { q: searchPrompt, api_key: API_KEY } });
-  let imgURL= res.data.data[0].images.original.url;
+  const res = await axios.get(GIPHY_URL, {
+    params: { q: searchPrompt, api_key: API_KEY },
+  });
+
+  let imgURL = res.data.data;
   return imgURL;
 }
 
+giphyApi();
+
 /** Input an embedded URL and creates img element in DOM, then append.*/
 function makeIMG(url) {
-  const $img = $("<img>").attr("src",url);
+  let randomIdx = Math.floor(Math.random() * 50);
+
+  const setImageURL = url[randomIdx].images.original.url;
+  const $img = $("<img>").attr("src", setImageURL);
   $imgDiv.append($img);
 }
 
 /** Capturing the form submission input and running the API based on input. */
 $giphyForm.on("submit", submitEvent);
 
-async function submitEvent(e){
-    e.preventDefault();
-    const searchPrompt = $giphyInput.val();
-    let URL = await giphyApi(searchPrompt);// put await here to make sure code waits before executing next line
-    makeIMG(URL);
+async function submitEvent(e) {
+  e.preventDefault();
+  const searchPrompt = $giphyInput.val();
+  let URL = await giphyApi(searchPrompt); // put await here to make sure code waits before executing next line
+  makeIMG(URL);
 }
 
 /** Make event listener to remove all images stored in $imgDiv */
 $("#giphy__remove").on("click", removeIMG);
 
-function removeIMG(){
+function removeIMG() {
   $imgDiv.empty();
-  console.log("remove button has been clicked")
+  console.log("remove button has been clicked");
 }
